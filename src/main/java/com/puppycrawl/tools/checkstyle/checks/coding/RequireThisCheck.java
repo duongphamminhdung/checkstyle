@@ -272,24 +272,25 @@ public class RequireThisCheck extends AbstractCheck {
      * @param ast IDENT to check.
      */
     private void processIdent(DetailAST ast) {
-        if (!shouldSkipAnnotationContext(ast)) {
-            final int parentType = ast.getParent().getType();
-            if (parentType == TokenTypes.METHOD_CALL) {
-                if (checkMethods) {
-                    final AbstractFrame frame = getMethodWithoutThis(ast);
-                    if (frame != null) {
-                        logViolation(MSG_METHOD, ast, frame);
-                    }
+        if (shouldSkipAnnotationContext(ast)) {
+            return;
+        }
+        final int parentType = ast.getParent().getType();
+
+        if (parentType == TokenTypes.METHOD_CALL) {
+            if (checkMethods) {
+                final AbstractFrame frame = getMethodWithoutThis(ast);
+                if (frame != null) {
+                    logViolation(MSG_METHOD, ast, frame);
                 }
             }
-            else {
-                if (checkFields) {
-                    final AbstractFrame frame = getFieldWithoutThis(ast, parentType);
-                    final boolean canUseThis = !isInCompactConstructor(ast);
-                    if (frame != null && canUseThis) {
-                        logViolation(MSG_VARIABLE, ast, frame);
-                    }
-                }
+            return;
+        }
+        if (checkFields) {
+            final AbstractFrame frame = getFieldWithoutThis(ast, parentType);
+            final boolean canUseThis = !isInCompactConstructor(ast);
+            if (frame != null && canUseThis) {
+                logViolation(MSG_VARIABLE, ast, frame);
             }
         }
     }
