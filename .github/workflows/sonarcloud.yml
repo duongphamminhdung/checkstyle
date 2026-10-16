@@ -35,3 +35,4 @@ jobs:
           org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
           -Dsonar.projectKey=duongphamminhdung_checkstyle
           -Dsonar.organization=duongphamminhdung
+          -Dsonar.branch.name=$GITHUB_REF_NAME
