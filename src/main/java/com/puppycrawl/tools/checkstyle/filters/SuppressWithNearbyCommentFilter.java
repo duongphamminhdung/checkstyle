@@ -35,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.RegexUtil;
 import com.puppycrawl.tools.checkstyle.utils.WeakReferenceHolder;
 
 /**
@@ -335,14 +336,14 @@ public class SuppressWithNearbyCommentFilter
             // Does not intern Patterns with Utils.getPattern()
             String format = "";
             try {
-                format = CommonUtil.fillTemplateWithStringsByRegexp(
+                format = RegexUtil.fillTemplateWithStringsByRegexp(
                         filter.checkFormat, text, filter.commentFormat);
                 tagCheckRegexp = Pattern.compile(format);
                 if (filter.messageFormat == null) {
                     tagMessageRegexp = null;
                 }
                 else {
-                    format = CommonUtil.fillTemplateWithStringsByRegexp(
+                    format = RegexUtil.fillTemplateWithStringsByRegexp(
                             filter.messageFormat, text, filter.commentFormat);
                     tagMessageRegexp = Pattern.compile(format);
                 }
@@ -350,11 +351,11 @@ public class SuppressWithNearbyCommentFilter
                     tagIdRegexp = null;
                 }
                 else {
-                    format = CommonUtil.fillTemplateWithStringsByRegexp(
+                    format = RegexUtil.fillTemplateWithStringsByRegexp(
                             filter.idFormat, text, filter.commentFormat);
                     tagIdRegexp = Pattern.compile(format);
                 }
-                format = CommonUtil.fillTemplateWithStringsByRegexp(
+                format = RegexUtil.fillTemplateWithStringsByRegexp(
                         filter.influenceFormat, text, filter.commentFormat);
 
                 final int influence = parseInfluence(format, filter.influenceFormat, text);

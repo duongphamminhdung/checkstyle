@@ -29,6 +29,7 @@ import java.util.regex.PatternSyntaxException;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.RegexUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -205,7 +206,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
     @Override
     public void setHeader(String header) {
         if (!CommonUtil.isBlank(header)) {
-            if (!CommonUtil.isPatternValid(header)) {
+            if (!RegexUtil.isPatternValid(header)) {
                 throw new IllegalArgumentException("Unable to parse format: " + header);
             }
             super.setHeader(header);

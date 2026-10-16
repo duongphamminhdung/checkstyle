@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.RegexUtil;
 
 /**
  * <div>
@@ -150,7 +151,7 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
     @Override
     public void init() {
         if (fileNamePattern == null && folderPattern == null) {
-            fileNamePattern = CommonUtil.createPattern("\\s");
+            fileNamePattern = RegexUtil.createPattern("\\s");
         }
     }
 

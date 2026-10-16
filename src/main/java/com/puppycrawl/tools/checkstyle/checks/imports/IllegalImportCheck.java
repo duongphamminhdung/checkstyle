@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.RegexUtil;
 
 /**
  * <div>
@@ -115,7 +116,7 @@ public class IllegalImportCheck
         illegalPkgs = from.clone();
         illegalPkgsRegexps.clear();
         for (String illegalPkg : illegalPkgs) {
-            illegalPkgsRegexps.add(CommonUtil.createPattern("^" + illegalPkg + "\\..*"));
+            illegalPkgsRegexps.add(RegexUtil.createPattern("^" + illegalPkg + "\\..*"));
         }
     }
 
@@ -131,7 +132,7 @@ public class IllegalImportCheck
     public void setIllegalClasses(String... from) {
         illegalClasses = from.clone();
         for (String illegalClass : illegalClasses) {
-            illegalClassesRegexps.add(CommonUtil.createPattern(illegalClass));
+            illegalClassesRegexps.add(RegexUtil.createPattern(illegalClass));
         }
     }
 
@@ -147,7 +148,7 @@ public class IllegalImportCheck
     public void setIllegalModules(String... from) {
         illegalModules = from.clone();
         for (String illegalModule : illegalModules) {
-            illegalModulesRegexps.add(CommonUtil.createPattern(illegalModule));
+            illegalModulesRegexps.add(RegexUtil.createPattern(illegalModule));
         }
     }
 

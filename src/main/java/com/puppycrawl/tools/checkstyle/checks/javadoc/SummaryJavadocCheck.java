@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.RegexUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
@@ -94,7 +95,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     /**
      * Specify the regexp for forbidden summary fragments.
      */
-    private Pattern forbiddenSummaryFragments = CommonUtil.createPattern("^$");
+    private Pattern forbiddenSummaryFragments = RegexUtil.createPattern("^$");
 
     /**
      * Specify the period symbol. Used to check the first sentence ends with a period. Periods that

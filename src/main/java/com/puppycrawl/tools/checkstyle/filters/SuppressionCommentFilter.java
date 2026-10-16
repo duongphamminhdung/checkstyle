@@ -36,6 +36,7 @@ import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.RegexUtil;
 import com.puppycrawl.tools.checkstyle.utils.WeakReferenceHolder;
 
 /**
@@ -396,7 +397,7 @@ public class SuppressionCommentFilter
             // Does not intern Patterns with Utils.getPattern()
             String format = "";
             try {
-                format = CommonUtil.fillTemplateWithStringsByRegexp(
+                format = RegexUtil.fillTemplateWithStringsByRegexp(
                         filter.checkFormat, text, commentFormat);
                 tagCheckRegexp = Pattern.compile(format);
 
@@ -404,7 +405,7 @@ public class SuppressionCommentFilter
                     tagMessageRegexp = null;
                 }
                 else {
-                    format = CommonUtil.fillTemplateWithStringsByRegexp(
+                    format = RegexUtil.fillTemplateWithStringsByRegexp(
                             filter.messageFormat, text, commentFormat);
                     tagMessageRegexp = Pattern.compile(format);
                 }
@@ -413,7 +414,7 @@ public class SuppressionCommentFilter
                     tagIdRegexp = null;
                 }
                 else {
-                    format = CommonUtil.fillTemplateWithStringsByRegexp(
+                    format = RegexUtil.fillTemplateWithStringsByRegexp(
                             filter.idFormat, text, commentFormat);
                     tagIdRegexp = Pattern.compile(format);
                 }

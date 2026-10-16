@@ -38,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.RegexUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -116,7 +117,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      */
     protected AbstractClassCouplingCheck(int defaultMax) {
         max = defaultMax;
-        excludeClassesRegexps.add(CommonUtil.createPattern("^$"));
+        excludeClassesRegexps.add(RegexUtil.createPattern("^$"));
     }
 
     /**

@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.RegexUtil;
 
 /**
  * <div>
@@ -159,7 +160,7 @@ public class IllegalTokenTextCheck
         else {
             compileFlags = 0;
         }
-        format = CommonUtil.createPattern(formatString, compileFlags);
+        format = RegexUtil.createPattern(formatString, compileFlags);
     }
 
 }

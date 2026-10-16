@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.RegexUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
@@ -168,7 +169,7 @@ public class JavadocRegexpCheck extends AbstractJavadocCheck {
         else {
             compileFlags = 0;
         }
-        return CommonUtil.createPattern(format, compileFlags);
+        return RegexUtil.createPattern(format, compileFlags);
     }
 
     /**

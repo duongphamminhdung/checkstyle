@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.RegexUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
@@ -55,7 +56,7 @@ public class IllegalBlockTagCheck extends AbstractJavadocCheck {
     public static final String MSG_ILLEGAL_PATTERN = "illegalblocktag.illegalPattern";
 
     /** Pattern that matches only empty content (Regexp format default). */
-    private static final Pattern MATCH_NOTHING = CommonUtil.createPattern("^$");
+    private static final Pattern MATCH_NOTHING = RegexUtil.createPattern("^$");
 
     /** Specify the regexp that tag content is allowed to match. */
     private Pattern tagTextPattern = MATCH_NOTHING;

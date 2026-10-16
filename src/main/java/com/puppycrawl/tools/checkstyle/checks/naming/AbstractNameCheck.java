@@ -26,6 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.RegexUtil;
 
 /**
  * Abstract class for checking that names conform to a specified format.
@@ -49,7 +50,7 @@ public abstract class AbstractNameCheck
      * @param format format to check with
      */
     protected AbstractNameCheck(String format) {
-        this.format = CommonUtil.createPattern(format);
+        this.format = RegexUtil.createPattern(format);
     }
 
     /**

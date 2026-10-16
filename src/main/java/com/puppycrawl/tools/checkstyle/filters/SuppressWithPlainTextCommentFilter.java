@@ -38,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.RegexUtil;
 
 /**
  * <div>
@@ -98,10 +99,10 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
     private String currentFileName = "";
 
     /** Specify comment pattern to trigger filter to begin suppression. */
-    private Pattern offCommentFormat = CommonUtil.createPattern(DEFAULT_OFF_FORMAT);
+    private Pattern offCommentFormat = RegexUtil.createPattern(DEFAULT_OFF_FORMAT);
 
     /** Specify comment pattern to trigger filter to end suppression. */
-    private Pattern onCommentFormat = CommonUtil.createPattern(DEFAULT_ON_FORMAT);
+    private Pattern onCommentFormat = RegexUtil.createPattern(DEFAULT_ON_FORMAT);
 
     /** Specify check pattern to suppress. */
     @XdocsPropertyType(PropertyType.PATTERN)
@@ -334,14 +335,14 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
             // Does not intern Patterns with Utils.getPattern()
             String format = "";
             try {
-                format = CommonUtil.fillTemplateWithStringsByRegexp(
+                format = RegexUtil.fillTemplateWithStringsByRegexp(
                         filter.checkFormat, text, commentFormat);
                 eventSourceRegexp = Pattern.compile(format);
                 if (filter.messageFormat == null) {
                     eventMessageRegexp = null;
                 }
                 else {
-                    format = CommonUtil.fillTemplateWithStringsByRegexp(
+                    format = RegexUtil.fillTemplateWithStringsByRegexp(
                             filter.messageFormat, text, commentFormat);
                     eventMessageRegexp = Pattern.compile(format);
                 }
@@ -349,7 +350,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
                     eventIdRegexp = null;
                 }
                 else {
-                    format = CommonUtil.fillTemplateWithStringsByRegexp(
+                    format = RegexUtil.fillTemplateWithStringsByRegexp(
                             filter.idFormat, text, commentFormat);
                     eventIdRegexp = Pattern.compile(format);
                 }

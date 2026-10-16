@@ -54,6 +54,7 @@ import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.RegexUtil;
 
 /**
  * A Java Bean that implements the component lifecycle interfaces by
@@ -344,7 +345,7 @@ public abstract class AbstractAutomaticBean
         @Override
         @SuppressWarnings("unchecked")
         public Object convert(Class type, Object value) {
-            return CommonUtil.createPattern(value.toString());
+            return RegexUtil.createPattern(value.toString());
         }
 
     }
@@ -368,7 +369,7 @@ public abstract class AbstractAutomaticBean
                 if (token.isEmpty()) {
                     continue;
                 }
-                result.add(CommonUtil.createPattern(token.trim()));
+                result.add(RegexUtil.createPattern(token.trim()));
             }
 
             return result.toArray(new Pattern[0]);

@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.RegexUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
@@ -87,7 +88,7 @@ public final class MissingOverrideCheck extends AbstractCheck {
 
     /** Compiled regexp to match Javadoc tags with no argument and {}. */
     private static final Pattern MATCH_INHERIT_DOC =
-            CommonUtil.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
+            RegexUtil.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
 
     /**
      * Enable java 5 compatibility mode.

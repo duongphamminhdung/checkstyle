@@ -35,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.RegexUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -104,7 +105,7 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
 
     /** Regexp pattern to match java.lang package. */
     private static final Pattern JAVA_LANG_PACKAGE_PATTERN =
-        CommonUtil.createPattern("^java\\.lang\\.[a-zA-Z]+$");
+        RegexUtil.createPattern("^java\\.lang\\.[a-zA-Z]+$");
 
     /** Suffix for the star import. */
     private static final String STAR_IMPORT_SUFFIX = ".*";

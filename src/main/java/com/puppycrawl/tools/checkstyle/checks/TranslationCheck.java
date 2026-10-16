@@ -50,6 +50,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.RegexUtil;
 
 /**
  * <div>
@@ -129,19 +130,19 @@ public final class TranslationCheck extends AbstractFileSetCheck {
      * variant suffix. For example, messages_es_ES_UNIX.properties.
      */
     private static final Pattern LANGUAGE_COUNTRY_VARIANT_PATTERN =
-        CommonUtil.createPattern("^.+\\_[a-z]{2}\\_[A-Z]{2}\\_[A-Za-z]+\\..+$");
+        RegexUtil.createPattern("^.+\\_[a-z]{2}\\_[A-Z]{2}\\_[A-Za-z]+\\..+$");
     /**
      * Regexp pattern for bundles names which end with language code, followed by country code
      * suffix. For example, messages_es_ES.properties.
      */
     private static final Pattern LANGUAGE_COUNTRY_PATTERN =
-        CommonUtil.createPattern("^.+\\_[a-z]{2}\\_[A-Z]{2}\\..+$");
+        RegexUtil.createPattern("^.+\\_[a-z]{2}\\_[A-Z]{2}\\..+$");
     /**
      * Regexp pattern for bundles names which end with language code suffix.
      * For example, messages_es.properties.
      */
     private static final Pattern LANGUAGE_PATTERN =
-        CommonUtil.createPattern("^.+\\_[a-z]{2}\\..+$");
+        RegexUtil.createPattern("^.+\\_[a-z]{2}\\..+$");
 
     /** File name format for default translation. */
     private static final String DEFAULT_TRANSLATION_FILE_NAME_FORMATTER = "%s.%s";
@@ -178,7 +179,7 @@ public final class TranslationCheck extends AbstractFileSetCheck {
      */
     public TranslationCheck() {
         setFileExtensions("properties");
-        baseName = CommonUtil.createPattern("^messages.*$");
+        baseName = RegexUtil.createPattern("^messages.*$");
         log = LogFactory.getLog(TranslationCheck.class);
     }
 

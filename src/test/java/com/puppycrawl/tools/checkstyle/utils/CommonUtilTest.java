@@ -109,10 +109,10 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     @Test
     public void testCreatePattern() {
         assertWithMessage("invalid pattern")
-            .that(CommonUtil.createPattern("Test").pattern())
+            .that(RegexUtil.createPattern("Test").pattern())
             .isEqualTo("Test");
         assertWithMessage("invalid pattern")
-            .that(CommonUtil.createPattern(".*Pattern.*")
+            .that(RegexUtil.createPattern(".*Pattern.*")
                 .pattern())
             .isEqualTo(".*Pattern.*");
     }
@@ -121,7 +121,7 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     public void testBadRegex() {
         final IllegalArgumentException ex =
                 getExpectedThrowable(IllegalArgumentException.class, () -> {
-                    CommonUtil.createPattern("[");
+                    RegexUtil.createPattern("[");
                 });
         assertWithMessage("Invalid exception message")
                 .that(ex)
@@ -133,7 +133,7 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     public void testBadRegex2() {
         final IllegalArgumentException ex =
                 getExpectedThrowable(IllegalArgumentException.class, () -> {
-                    CommonUtil.createPattern("[", Pattern.MULTILINE);
+                    RegexUtil.createPattern("[", Pattern.MULTILINE);
                 });
         assertWithMessage("Invalid exception message")
                 .that(ex)
@@ -235,7 +235,7 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testPattern() {
-        final boolean result = CommonUtil.isPatternValid("someValidPattern");
+        final boolean result = RegexUtil.isPatternValid("someValidPattern");
         assertWithMessage("Should return true when pattern is valid")
                 .that(result)
                 .isTrue();
@@ -243,7 +243,7 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testInvalidPattern() {
-        final boolean result = CommonUtil.isPatternValid("some[invalidPattern");
+        final boolean result = RegexUtil.isPatternValid("some[invalidPattern");
         assertWithMessage("Should return false when pattern is invalid")
                 .that(result)
                 .isFalse();
@@ -321,27 +321,27 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     @Test
     public void testFillTemplateWithStringsByRegexp() {
         assertWithMessage("invalid result")
-            .that(CommonUtil.fillTemplateWithStringsByRegexp("template",
+            .that(RegexUtil.fillTemplateWithStringsByRegexp("template",
                 "lineToPlaceInTemplate", Pattern.compile("NO MATCH")))
             .isEqualTo("template");
         assertWithMessage("invalid result")
-            .that(CommonUtil.fillTemplateWithStringsByRegexp("before $0 after", "word",
+            .that(RegexUtil.fillTemplateWithStringsByRegexp("before $0 after", "word",
                         Pattern.compile("\\w+")))
             .isEqualTo("before word after");
         assertWithMessage("invalid result")
-            .that(CommonUtil.fillTemplateWithStringsByRegexp("before $0 after1 $1 after2 $2 after3",
+            .that(RegexUtil.fillTemplateWithStringsByRegexp("before $0 after1 $1 after2 $2 after3",
                         "word 123", Pattern.compile("(\\w+) (\\d+)")))
             .isEqualTo("before word 123 after1 word after2 123 after3");
         assertWithMessage("dollar sign in match must be treated literally")
-            .that(CommonUtil.fillTemplateWithStringsByRegexp("before $0 after",
+            .that(RegexUtil.fillTemplateWithStringsByRegexp("before $0 after",
                         "a$b", Pattern.compile(".+")))
             .isEqualTo("before a$b after");
         assertWithMessage("backslash in match must be treated literally")
-            .that(CommonUtil.fillTemplateWithStringsByRegexp("before $0 after",
+            .that(RegexUtil.fillTemplateWithStringsByRegexp("before $0 after",
                         "a\\b", Pattern.compile(".+")))
             .isEqualTo("before a\\b after");
         assertWithMessage("non-matching optional group must be left untouched")
-            .that(CommonUtil.fillTemplateWithStringsByRegexp("x $1 y $2 z",
+            .that(RegexUtil.fillTemplateWithStringsByRegexp("x $1 y $2 z",
                         "a", Pattern.compile("(a)(b)?")))
             .isEqualTo("x a y $2 z");
     }

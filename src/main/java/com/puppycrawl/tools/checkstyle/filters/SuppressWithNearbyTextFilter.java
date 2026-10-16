@@ -38,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.RegexUtil;
 
 /**
  * <div>
@@ -303,20 +304,20 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
             final String lineRange = filter.lineRange;
             String format = "";
             try {
-                format = CommonUtil.fillTemplateWithStringsByRegexp(
+                format = RegexUtil.fillTemplateWithStringsByRegexp(
                         filter.checkPattern, text, nearbyTextPattern);
                 eventSourceRegexp = Pattern.compile(format);
                 if (filter.messagePattern != null) {
-                    format = CommonUtil.fillTemplateWithStringsByRegexp(
+                    format = RegexUtil.fillTemplateWithStringsByRegexp(
                             filter.messagePattern, text, nearbyTextPattern);
                     eventMessageRegexp = Pattern.compile(format);
                 }
                 if (filter.idPattern != null) {
-                    format = CommonUtil.fillTemplateWithStringsByRegexp(
+                    format = RegexUtil.fillTemplateWithStringsByRegexp(
                             filter.idPattern, text, nearbyTextPattern);
                     eventIdRegexp = Pattern.compile(format);
                 }
-                format = CommonUtil.fillTemplateWithStringsByRegexp(lineRange,
+                format = RegexUtil.fillTemplateWithStringsByRegexp(lineRange,
                                                                     text, nearbyTextPattern);
 
                 final int range = parseRange(format, lineRange, text);
