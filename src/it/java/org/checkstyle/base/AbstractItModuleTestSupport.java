@@ -52,7 +52,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
 import com.puppycrawl.tools.checkstyle.bdd.TestInputViolation;
 import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.RegexUtil;
 
 public abstract class AbstractItModuleTestSupport extends AbstractPathTestSupport {
 
@@ -76,7 +76,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
 
     protected static final String ROOT_MODULE_NAME = "root";
 
-    private static final Pattern WARN_PATTERN = CommonUtil
+    private static final Pattern WARN_PATTERN = RegexUtil
             .createPattern(".* *// *warn *|/[*]\\*?\\s?warn\\s?[*]/");
 
     private final ByteArrayOutputStream stream = new ByteArrayOutputStream();
