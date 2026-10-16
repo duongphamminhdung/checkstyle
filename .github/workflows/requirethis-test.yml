@@ -18,5 +18,5 @@ jobs:
           distribution: temurin
           java-version: '21'
           cache: maven
-      - name: Run RequireThisCheckTest
-        run: mvn -B test -Dtest=RequireThisCheckTest -DfailIfNoTests=false
+      - name: Run RequireThisCheckTest and CommonUtilTest
+        run: mvn -B test -Dtest='RequireThisCheckTest,CommonUtilTest' -DfailIfNoTests=false
