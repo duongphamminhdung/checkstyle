@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.RegexUtil;
 import com.puppycrawl.tools.checkstyle.xpath.AbstractNode;
 import com.puppycrawl.tools.checkstyle.xpath.RootNode;
 import net.sf.saxon.Configuration;
@@ -77,7 +77,7 @@ public final class XpathFilterElement implements TreeWalkerFilter {
     public XpathFilterElement(String files, String checks,
                        String message, String moduleId, String query) {
         this(Optional.ofNullable(files).map(Pattern::compile).orElse(null),
-             Optional.ofNullable(checks).map(CommonUtil::createPattern).orElse(null),
+             Optional.ofNullable(checks).map(RegexUtil::createPattern).orElse(null),
              Optional.ofNullable(message).map(Pattern::compile).orElse(null),
              moduleId,
              query);
